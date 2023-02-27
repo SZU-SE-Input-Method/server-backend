@@ -1,4 +1,4 @@
-package com.example.sedemo.utils.result;
+package com.example.sedemo.result;
 
 public enum ResultEnum {
 
