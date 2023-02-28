@@ -22,19 +22,31 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("knowledge")
-public class Knowledge implements Serializable {
+@TableName("users")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "kid", type = IdType.AUTO)
-    private Long kid;
+    @TableId(value = "uid", type = IdType.AUTO)
+    private Long uid;
 
-    @TableField("title")
-    private String title;
+    @TableField("name")
+    private String name;
 
-    @TableField("text")
-    private String text;
+    @TableField("username")
+    private String username;
+
+    @TableField("password")
+    private String password;
+
+    @TableField("gender")
+    private Boolean gender;
+
+    @TableField("phone")
+    private String phone;
+
+    @TableField("email")
+    private String email;
 
     @TableField("create_time")
     private LocalDateTime createTime;

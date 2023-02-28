@@ -1,7 +1,7 @@
 package com.example.sedemo.mapper;
 
+import com.example.sedemo.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.sedemo.entity.Images;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023-02-28
  */
 @Mapper
-public interface ImagesMapper extends BaseMapper<Images> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

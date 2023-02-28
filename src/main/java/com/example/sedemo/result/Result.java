@@ -1,8 +1,10 @@
 package com.example.sedemo.result;
 
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@Data
 public class Result<T> {
     private Integer code; //编码：1成功，0和其它数字为失败
 

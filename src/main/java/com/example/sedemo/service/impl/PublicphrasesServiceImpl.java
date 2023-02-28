@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  *  服务实现类
  * </p>
  *
- * @author author
- * @since 2023-02-27
+ * @author LiuYe
+ * @since 2023-02-28
  */
 @Service
 public class PublicphrasesServiceImpl extends ServiceImpl<PublicphrasesMapper, Publicphrases> implements IPublicphrasesService {

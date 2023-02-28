@@ -9,31 +9,35 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * <p>
  * 
  * </p>
  *
- * @author author
- * @since 2023-02-27
+ * @author LiuYe
+ * @since 2023-02-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("admins")
-public class Admins implements Serializable {
+@TableName("phrases")
+public class Phrase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "aid", type = IdType.AUTO)
-    private Long aid;
+    @TableId(value = "pid", type = IdType.AUTO)
+    private Long pid;
 
-    @TableField("username")
-    private String username;
+    @TableField("content")
+    private String content;
 
-    @TableField("password")
-    private String password;
+    @TableField("uid")
+    private Long uid;
+
+    @TableField("create_time")
+    private LocalDate createTime;
 
 
 }

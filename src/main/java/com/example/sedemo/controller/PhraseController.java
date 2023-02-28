@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
  *  前端控制器
  * </p>
  *
- * @author author
- * @since 2023-02-27
+ * @author LiuYe
+ * @since 2023-02-28
  */
 @RestController
-@RequestMapping("/phrases")
-public class PhrasesController {
+@RequestMapping("/phrase")
+public class PhraseController {
 
 }

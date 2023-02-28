@@ -1,11 +1,20 @@
 package com.example.sedemo.controller;
 
-import com.example.sedemo.entity.Knowledge;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author LiuYe
+ * @since 2023-02-28
+ */
 @RestController
-@Slf4j
+@RequestMapping("/knowledge")
 public class KnowledgeController {
+
 }
