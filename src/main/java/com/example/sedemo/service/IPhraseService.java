@@ -1,16 +1,16 @@
 package com.example.sedemo.service;
 
+import com.example.sedemo.entity.Phrase;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.sedemo.entity.Users;
 
 /**
  * <p>
  *  服务类
  * </p>
  *
- * @author author
- * @since 2023-02-27
+ * @author LiuYe
+ * @since 2023-02-28
  */
-public interface IUsersService extends IService<Users> {
+public interface IPhraseService extends IService<Phrase> {
 
 }

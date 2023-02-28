@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.ValidationException;
+import javax.xml.bind.ValidationException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 @ControllerAdvice(annotations = {RestController.class, Controller.class})

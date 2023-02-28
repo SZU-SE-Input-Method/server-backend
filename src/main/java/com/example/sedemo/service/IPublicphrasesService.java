@@ -8,8 +8,8 @@ import com.example.sedemo.entity.Publicphrases;
  *  服务类
  * </p>
  *
- * @author author
- * @since 2023-02-27
+ * @author LiuYe
+ * @since 2023-02-28
  */
 public interface IPublicphrasesService extends IService<Publicphrases> {
 
