@@ -1,10 +1,10 @@
 package com.example.sedemo.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.sedemo.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.sedemo.entity.User;
+import com.example.sedemo.result.Result;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,6 +19,8 @@ public interface IUserService extends IService<User> {
 
     void updateUser(User user);
 
-    Page<User> userPage(Integer pageNum, Integer pageSize, String name, String username, Boolean gender, String phone, String email, Date createTime);
+    Result getUserById(Long uid);
+
+    Result userPage(Integer pageNum, Integer pageSize, String name, String username, Boolean gender, String phone, String email, LocalDateTime createTime);
 
 }

@@ -1,12 +1,12 @@
 package com.example.sedemo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.example.sedemo.Dto.UserDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -48,8 +48,15 @@ public class User implements Serializable {
     @TableField("email")
     private String email;
 
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-
+    public static User dtoToUser(UserDto userDTO) {
+        User user = new User();
+        BeanUtils.copyProperties(userDTO, user, "gender");
+        if (StringUtils.hasText(userDTO.getGender())) {
+            user.setGender("男".equals(userDTO.getGender()));
+        }
+        return user;
+    }
 }

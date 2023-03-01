@@ -1,0 +1,11 @@
+version : '3'
+services:
+  rg-takeout:
+    container_name: server-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - /src/main/resources/upload://usr/local/server-backend/src/main/resources/upload
