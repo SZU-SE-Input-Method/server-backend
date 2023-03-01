@@ -2,27 +2,27 @@ package com.example.sedemo.result;
 
 import lombok.Data;
 @Data
-public class Result<T> {
+public class Result {
     private Integer code; // 200成功，400失败
 
     private String msg; //错误信息
 
-    private T data; //数据
+    private Object data; //数据
 
     private boolean ok;
 
     private Result(){}
 
-    public static <T> Result<T> success() {
-        Result<T> result = new Result<T>();
+    public static  Result success() {
+        Result result = new Result();
         result.setOk(true);
         result.setCode(ResultCode.SUCCESS);
         result.setMsg("成功");
         return result;
     }
 
-    public static <T> Result<T> error() {
-        Result<T> result = new Result<T>();
+    public static  Result error() {
+        Result result = new Result();
         result.setOk(false);
         result.setCode(ResultCode.ERROR);
         result.setMsg("失败");
@@ -44,7 +44,7 @@ public class Result<T> {
         return this;
     }
 
-    public Result data(T data){
+    public Result data(Object data){
         this.setData(data);
         return this;
     }
