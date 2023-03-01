@@ -5,6 +5,7 @@ import com.example.sedemo.entity.Admin;
 import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,13 @@ public class AdminController {
 
     public AdminController() {
     }
-
+    /***
+    * @description 管理员登录认证
+    * @author LiuYe
+    * @date 1/3/2023 下午8:42
+    */
     @PostMapping("/login")
-    public Result<Void> authAdministrator(@RequestBody Admin admin) {
+    public Result authAdministrator(@Validated @RequestBody Admin admin) {
         if(adminService.auth(admin)) {
             return Result.success().msg("管理员登录成功");
         }
