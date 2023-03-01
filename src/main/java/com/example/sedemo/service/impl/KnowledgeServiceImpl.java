@@ -29,12 +29,12 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
     }
 
     @Override
-    public void updataKnowledge(Knowledge knowledge) {
-        this.updataKnowledge(knowledge);
+    public void updateKnowledge(Knowledge knowledge) {
+        this.updateKnowledge(knowledge);
     }
 
     @Override
-    public Page<Knowledge> knowledgepage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime,String text) {
+    public Page<Knowledge> knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime,String text) {
         //初始化分页信息
         Page<Knowledge> knowledgePage = new Page<>(pageNum,pageSize);
         //构造查询条件
@@ -47,7 +47,7 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
     }
 
     @Override
-    public void deleteKnoowledge(Long kid) {
+    public void deleteKnowledge(Long kid) {
         this.removeById(kid);
     }
 }

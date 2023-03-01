@@ -20,11 +20,11 @@ public interface IKnowledgeService extends IService<Knowledge> {
     void addKnowledge(Knowledge knowledge);
 
     //修改知识
-    void updataKnowledge(Knowledge knowledge);
+    void updateKnowledge(Knowledge knowledge);
 
     //查询知识 && 分页
-    Page<Knowledge> knowledgepage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime,String text);
+    Page<Knowledge> knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime,String text);
 
     //删除知识
-    void deleteKnoowledge(Long kid);
+    void deleteKnowledge(Long kid);
 }
