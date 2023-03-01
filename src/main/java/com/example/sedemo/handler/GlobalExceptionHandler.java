@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     private static final String DUPLICATE_KEY_WARNING = "Duplicate entry";
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public Result<String> exceptionHandler(SQLIntegrityConstraintViolationException exception) {
+    public Result exceptionHandler(SQLIntegrityConstraintViolationException exception) {
         String errorMsg = exception.getMessage();
         log.error(errorMsg);
 
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = {BindException.class, ValidationException.class, MethodArgumentNotValidException.class})
-    public Result<String> handleValidatedException(BindException e) {
+    public Result handleValidatedException(BindException e) {
         return Result.error().msg(e.getBindingResult().getFieldError().getDefaultMessage());
     }
 }

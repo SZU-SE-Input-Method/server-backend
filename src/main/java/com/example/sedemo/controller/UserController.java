@@ -29,14 +29,14 @@ public class UserController {
     }
 
     @PostMapping
-    public Result<String> saveUser(@Validated @RequestBody User user) {
+    public Result saveUser(@Validated @RequestBody User user) {
         userService.saveUser(user);
 
         return Result.success().msg("用户新增成功");
     }
 
     @PutMapping
-    public Result<String> updateUser(@Validated @RequestBody User user) {
+    public Result updateUser(@Validated @RequestBody User user) {
         if (user.getUid() == null) {
             return Result.error().msg("接口调用报错:用户id不可为空");
         }
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/page/{pageNum}/{pageSize}")
-    public Result<Page<User>> page(
+    public Result page(
             @PathVariable Integer pageNum,
             @PathVariable Integer pageSize,
             String name,
