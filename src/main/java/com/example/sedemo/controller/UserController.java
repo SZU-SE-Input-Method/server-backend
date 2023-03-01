@@ -32,17 +32,17 @@ public class UserController {
     public Result<String> saveUser(@Validated @RequestBody User user) {
         userService.saveUser(user);
 
-        return Result.success("用户新增成功");
+        return Result.success().msg("用户新增成功");
     }
 
     @PutMapping
     public Result<String> updateUser(@Validated @RequestBody User user) {
         if (user.getUid() == null) {
-            return Result.error("接口调用报错:用户id不可为空");
+            return Result.error().msg("接口调用报错:用户id不可为空");
         }
         userService.updateUser(user);
 
-        return Result.success("用户信息修改成功");
+        return Result.success().msg("用户信息修改成功");
     }
 
     @GetMapping("/page/{pageNum}/{pageSize}")
@@ -56,6 +56,6 @@ public class UserController {
             String email,
             Date createTime) {
         Page<User> page = userService.userPage(pageNum, pageSize, name, username, gender, phone, email, createTime);
-        return Result.success(page);
+        return Result.success().data(page);
     }
 }
