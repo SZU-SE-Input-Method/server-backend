@@ -27,14 +27,14 @@ public class GlobalExceptionHandler {
         if(errorMsg.contains(DUPLICATE_KEY_WARNING)) {
             String[] split = errorMsg.split(" ");
             String msg = split[2] + " 已存在";
-            return Result.error(msg);
+            return Result.error().msg(msg);
         }
 
-        return Result.error("出现错误");
+        return Result.error().msg("出现错误");
     }
 
     @ExceptionHandler(value = {BindException.class, ValidationException.class, MethodArgumentNotValidException.class})
     public Result<String> handleValidatedException(BindException e) {
-        return Result.error(e.getBindingResult().getFieldError().getDefaultMessage());
+        return Result.error().msg(e.getBindingResult().getFieldError().getDefaultMessage());
     }
 }

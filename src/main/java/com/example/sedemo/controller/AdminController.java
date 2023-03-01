@@ -28,10 +28,10 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public Result<String> authAdministrator(@RequestBody Admin admin) {
+    public Result<Void> authAdministrator(@RequestBody Admin admin) {
         if(adminService.auth(admin)) {
-            return Result.success("管理员登录成功");
+            return Result.success().msg("管理员登录成功");
         }
-        return Result.error("管理员登录失败");
+        return Result.error().msg("管理员登录失败");
     }
 }
