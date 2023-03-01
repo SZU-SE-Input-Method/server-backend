@@ -2,19 +2,24 @@ package com.example.sedemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.sedemo.Dto.UserDto;
 import com.example.sedemo.entity.User;
 import com.example.sedemo.mapper.UserMapper;
+import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author LiuYe
@@ -28,27 +33,36 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String password = user.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
         user.setPassword(password);
-        //生成账号和数据库id
-        user.setUsername(user.getName());
-        user.setUid(1L);
+        //调用mp的insert接口
         this.save(user);
     }
 
     @Override
     public void updateUser(User user) {
         //若填写密码则更新密码
-        if(StringUtils.hasText(user.getPassword())) {
+        if (StringUtils.hasText(user.getPassword())) {
             //对密码进行MD5加密
             String password = user.getPassword();
             password = DigestUtils.md5DigestAsHex(password.getBytes());
             user.setPassword(password);
         }
-
+        //调用mp的update接口
         this.updateById(user);
     }
 
     @Override
-    public Page<User> userPage(Integer pageNum, Integer pageSize, String name, String username, Boolean gender, String phone, String email, Date createTime) {
+    public Result getUserById(Long uid) {
+        //调用mp接口查询用户
+        User user = this.getById(uid);
+        //判断是否查询到数据
+        if (user == null) {
+            return Result.error().msg("查询失败,不存在对应用户");
+        }
+        return Result.success().data(UserDto.userToDTO(user)).msg("查询到id为:" + uid + "的用户信息");
+    }
+
+    @Override
+    public Result userPage(Integer pageNum, Integer pageSize, String name, String username, Boolean gender, String phone, String email, LocalDateTime createTime) {
         //初始化分页信息
         Page<User> userPage = new Page<>(pageNum, pageSize);
         //构造查询条件
@@ -59,8 +73,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         queryWrapper.like(StringUtils.hasText(email), User::getEmail, email);
         queryWrapper.like(createTime != null, User::getCreateTime, createTime);
         queryWrapper.eq(gender != null, User::getGender, gender);
+        //调用mp接口
         this.page(userPage, queryWrapper);
-
-        return userPage;
+        //DTO转换
+        Page<UserDto> userDTOPage = new Page<>();
+        BeanUtils.copyProperties(userPage, userDTOPage, "records");
+        List<User> records = userPage.getRecords();
+        List<UserDto> list = records.stream().map(UserDto::userToDTO).collect(Collectors.toList());
+        userDTOPage.setRecords(list);
+        return Result.success().data(userDTOPage).msg("分页查询用户列表成功");
     }
 }

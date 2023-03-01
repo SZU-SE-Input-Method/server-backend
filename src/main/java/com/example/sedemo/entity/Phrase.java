@@ -39,5 +39,4 @@ public class Phrase implements Serializable {
     @TableField("create_time")
     private LocalDate createTime;
 
-
 }
