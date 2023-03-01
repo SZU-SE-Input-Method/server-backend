@@ -12,12 +12,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
  *
- * @author LiuYe
- * @since 2023-02-28
+ *
+ * @author LiuHongLie
+ * @since
+ *
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
