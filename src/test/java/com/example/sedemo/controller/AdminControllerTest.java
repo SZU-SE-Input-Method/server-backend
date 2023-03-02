@@ -35,6 +35,7 @@ class AdminControllerTest {
      * @author LiuYe
      * @date 1/3/2023 下午6:53
      */
+
     @ParameterizedTest
     @DisplayName("管理员登录测试")
     @CsvSource({"admin, admin", "admin,123456"})

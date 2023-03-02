@@ -1,11 +1,13 @@
 package com.example.sedemo.service.impl;
 
 import com.example.sedemo.service.CookieService;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Service
 public class CookieServiceImpl implements CookieService {
 
     @Override
