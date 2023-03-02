@@ -43,3 +43,5 @@ public class AdminController {
         return Result.error().msg("管理员登录失败");
     }
 }
+//curl 1.12.74.230/api/user/page/1/2
+//curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"admin\",\"password\":\"admin\"}" "http://1.12.74.230/api/admin/login"

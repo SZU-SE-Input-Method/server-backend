@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -30,9 +31,11 @@ public class Admin implements Serializable {
     private Long aid;
 
     @TableField("username")
+    @NotBlank(message = "管理员账号不可为空")
     private String username;
 
     @TableField("password")
+    @NotBlank(message = "管理员密码不可为空")
     private String password;
 
 
