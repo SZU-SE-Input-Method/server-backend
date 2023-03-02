@@ -60,8 +60,8 @@ public class KnowledgeController {
             String title,
             Data createTime,
             String text){
-        Page<Knowledge> page = knowledgeService.knowledgePage(pageNum,pageSize,kid,title,createTime,text);
-        return Result.error().data(page);
+        Result result = knowledgeService.knowledgePage(pageNum,pageSize,kid,title,createTime,text);
+        return Result.success().data(result.getData()).msg("知识查询分页成功");
     }
 
     //删除知识

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.sedemo.entity.Knowledge;
 import com.example.sedemo.mapper.KnowledgeMapper;
+import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IKnowledgeService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -34,7 +35,7 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
     }
 
     @Override
-    public Page<Knowledge> knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime,String text) {
+    public Result knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime, String text) {
         //初始化分页信息
         Page<Knowledge> knowledgePage = new Page<>(pageNum,pageSize);
         //构造查询条件
@@ -43,7 +44,7 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
         queryWrapper.like(StringUtils.hasText(text),Knowledge::getText,text);
         queryWrapper.like(createTime != null, Knowledge::getCreateTime,createTime);
         this.page(knowledgePage,queryWrapper);
-        return knowledgePage;
+        return Result.success().data(knowledgePage).msg("分页查询知识列表成功");
     }
 
     @Override
