@@ -15,13 +15,12 @@ import java.time.LocalDateTime;
  * @since 2023-02-28
  */
 public interface IUserService extends IService<User> {
-    Result saveUser(User user);
+    void saveUser(User user);
 
-    Result updateUser(User user);
+    void updateUser(User user);
 
     Result getUserById(Long uid);
 
     Result userPage(Integer pageNum, Integer pageSize, String name, String username, Boolean gender, String phone, String email, LocalDateTime createTime);
 
-    Result deleteById(Long uid);
 }

@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * <p>
@@ -34,7 +33,8 @@ public class UserController {
     @PostMapping
     public Result saveUser(@Validated @RequestBody UserDto userDTO) {
         log.info("调用查询用户接口,接受数据:{}", userDTO);
-        return userService.saveUser(User.dtoToUser(userDTO));
+        userService.saveUser(User.dtoToUser(userDTO));
+        return Result.success().msg("用户新增成功");
     }
 
     @PutMapping
@@ -43,7 +43,8 @@ public class UserController {
             return Result.error().msg("接口调用报错:用户id不可为空");
         }
         log.info("调用更新用户接口,接受数据:{}", userDTO);
-        return userService.updateUser(User.dtoToUser(userDTO));
+        userService.updateUser(User.dtoToUser(userDTO));
+        return Result.success().msg("用户信息修改成功");
     }
 
     @GetMapping("/{uid}")
@@ -53,15 +54,6 @@ public class UserController {
         }
         log.info("调用查询用户接口,接受数据:uid = {}", uid);
         return userService.getUserById(uid);
-    }
-
-    @DeleteMapping("/{uid}")
-    public Result deleteById(@PathVariable Long uid) {
-        if (Objects.isNull(uid)) {
-            return Result.error().msg("请根据用户id删除用户");
-        }
-        log.info("调用删除用户接口:接收信息{}",uid);
-        return userService.deleteById(uid);
     }
 
     @GetMapping("/page/{pageNum}/{pageSize}")
@@ -80,5 +72,4 @@ public class UserController {
         log.info("调用分页查询用户列表接口");
         return userService.userPage(pageNum, pageSize, name, username, gender, phone, email, createTime);
     }
-
 }
