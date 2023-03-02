@@ -46,8 +46,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         //签发token
         String token = TokenUtils.sign(admin.getUsername());
         //判断是否已登录
-        if(cookieService.get(request) != null && cookieService.get(request).equals(token))
+        if(cookieService.get(request) != null && cookieService.get(request).equals(token)) {
             return false;
+        }
         //保存cookie
         cookieService.set(request, response, token);
         return true;
