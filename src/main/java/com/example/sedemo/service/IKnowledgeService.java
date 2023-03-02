@@ -6,6 +6,7 @@ import com.example.sedemo.entity.Knowledge;
 import com.example.sedemo.result.Result;
 
 import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * <p>
@@ -24,8 +25,11 @@ public interface IKnowledgeService extends IService<Knowledge> {
     void updateKnowledge(Knowledge knowledge);
 
     //查询知识 && 分页
-    Result knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime, String text);
+    Result knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Date createTime, String text);
 
     //删除知识
     void deleteKnowledge(Long kid);
+
+    //根据kid查询
+    public Result getKnowledgeById(Long kid);
 }

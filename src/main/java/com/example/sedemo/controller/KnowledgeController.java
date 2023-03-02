@@ -1,18 +1,15 @@
 package com.example.sedemo.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.sedemo.entity.Knowledge;
 import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IKnowledgeService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * <p>
@@ -59,7 +56,7 @@ public class KnowledgeController {
             @PathVariable Integer pageSize,
             Long kid,
             String title,
-            Data createTime,
+            Date createTime,
             String text){
         if (pageNum == null || pageSize == null){
             return Result.error().msg("当前页码或每页数量参数缺失");
@@ -70,7 +67,7 @@ public class KnowledgeController {
     }
 
     //删除知识
-    @Delete("/delete/{kid}")
+    @DeleteMapping("/{kid}")
     public Result deleteKnowledge(@PathVariable Long kid){
         if (kid == null){
             Result.error().msg("删除知识失败,kid无效");
@@ -78,6 +75,16 @@ public class KnowledgeController {
         log.info("调用知识删除接口，删除知识id:{}",kid);
         knowledgeService.deleteKnowledge(kid);
         return Result.success().msg("知识删除成功");
+    }
+
+    //根据kid查询知识
+    @GetMapping("/{kid}")
+    public Result getKnowingById(@PathVariable Long kid) {
+        if (kid == null) {
+            return Result.error().msg("请使用知识id查询具体知识");
+        }
+        log.info("调用查询知识接口,接受数据:kid = {}", kid);
+        return knowledgeService.getKnowledgeById(kid);
     }
 
 }

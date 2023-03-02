@@ -30,7 +30,7 @@ public class PublicphrasesServiceImpl extends ServiceImpl<PublicphrasesMapper, P
 
     @Override
     public void updatePublicPhrases(Publicphrases publicphrases) {
-        this.updatePublicPhrases(publicphrases);
+        this.updateById(publicphrases);
     }
 
     @Override
@@ -47,11 +47,12 @@ public class PublicphrasesServiceImpl extends ServiceImpl<PublicphrasesMapper, P
 
     @Override
     public void deletePublicPhrases(Long ppid) {
-        this.deletePublicPhrases(ppid);
+        this.removeById(ppid);
     }
 
+
     @Override
-    public Result publicPhrasesById(Long ppid) {
+    public Result getPhraseById(Long ppid) {
         Publicphrases publicphrases = this.getById(ppid);
         return Result.success().data(publicphrases).msg("短语查询成功");
     }

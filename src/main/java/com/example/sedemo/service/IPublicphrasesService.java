@@ -30,6 +30,6 @@ public interface IPublicphrasesService extends IService<Publicphrases> {
     void deletePublicPhrases(Long ppid);
 
     //根据ppid查询
-    Result publicPhrasesById(Long ppid);
 
+    Result getPhraseById(Long ppid);
 }

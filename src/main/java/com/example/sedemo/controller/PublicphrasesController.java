@@ -1,12 +1,10 @@
 package com.example.sedemo.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.example.sedemo.entity.Publicphrases;
 import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IPublicphrasesService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +65,7 @@ public class PublicphrasesController {
     }
 
     //删除短语
-    @Delete("/delete/{ppid}")
+    @DeleteMapping("/{ppid}")
     public Result deletePublicPhrases(@PathVariable Long ppid){
         if (ppid == null){
             return Result.error().msg("删除短语失败，ppid缺失");
@@ -78,5 +76,13 @@ public class PublicphrasesController {
     }
 
     //根据ppid查询短语
+    @GetMapping("/{ppid}")
+    public Result getPhraseById(@PathVariable Long ppid) {
+        if (ppid == null) {
+            return Result.error().msg("请使用短语id查询具体短语");
+        }
+        log.info("调用查询短语接口,接受数据:pid = {}", ppid);
+        return publicphrasesService.getPhraseById(ppid);
+    }
 
 }

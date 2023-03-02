@@ -10,7 +10,8 @@ import com.example.sedemo.service.IKnowledgeService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
+
 
 /**
  * <p>
@@ -31,11 +32,11 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
 
     @Override
     public void updateKnowledge(Knowledge knowledge) {
-        this.updateKnowledge(knowledge);
+        this.updateById(knowledge);
     }
 
     @Override
-    public Result knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Data createTime, String text) {
+    public Result knowledgePage(Integer pageNum, Integer pageSize, Long kid, String title, Date createTime, String text) {
         //初始化分页信息
         Page<Knowledge> knowledgePage = new Page<>(pageNum,pageSize);
         //构造查询条件
@@ -49,6 +50,12 @@ public class KnowledgeServiceImpl extends ServiceImpl<KnowledgeMapper, Knowledge
 
     @Override
     public void deleteKnowledge(Long kid) {
-        this.deleteKnowledge(kid);
+        this.removeById(kid);
+    }
+
+    @Override
+    public Result getKnowledgeById(Long kid) {
+        Knowledge knowledge = this.getById(kid);
+        return Result.success().data(knowledge).msg("知识查询成功");
     }
 }
