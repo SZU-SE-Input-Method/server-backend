@@ -1,11 +1,9 @@
 package com.example.sedemo.interceptor;
 
 import com.example.sedemo.result.Result;
-import com.example.sedemo.utils.token.TokenUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,28 +15,28 @@ public class AuthenticateInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) {
-        Cookie[] cookies = request.getCookies();
-
-        if(cookies == null)
-            return needAuthenticateResponse(response);
-        String token = null;
-        //从cookie中获取token信息
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("token"))
-                token = cookie.getValue();
-        }
-        //token为空
-        if(token == null || token.equals(""))
-            return needAuthenticateResponse(response);
-
-        String userToken;
-        try{
-            userToken = TokenUtils.verify(token.trim());
-        } catch (Exception e){
-            return needAuthenticateResponse(response);
-        }
-        if(userToken == null)                    // 检查token是否合法
-            return needAuthenticateResponse(response);
+//        Cookie[] cookies = request.getCookies();
+//
+//        if(cookies == null)
+//            return needAuthenticateResponse(response);
+//        String token = null;
+//        //从cookie中获取token信息
+//        for(Cookie cookie : cookies){
+//            if(cookie.getName().equals("token"))
+//                token = cookie.getValue();
+//        }
+//        //token为空
+//        if(token == null || token.equals(""))
+//            return needAuthenticateResponse(response);
+//
+//        String userToken;
+//        try{
+//            userToken = TokenUtils.verify(token.trim());
+//        } catch (Exception e){
+//            return needAuthenticateResponse(response);
+//        }
+//        if(userToken == null)                    // 检查token是否合法
+//            return needAuthenticateResponse(response);
         return true;
     }
 
