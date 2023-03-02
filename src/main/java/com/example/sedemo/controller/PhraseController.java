@@ -22,7 +22,7 @@ import java.time.LocalDate;
  * @since 2023-02-28
  */
 @RestController
-@RequestMapping("/phrase")
+@RequestMapping("/phrase/private")
 @Slf4j
 public class PhraseController {
 
@@ -35,7 +35,7 @@ public class PhraseController {
      * @author LiuYe
      * @date 1/3/2023 下午8:44
      */
-    @GetMapping("/private/{pid}")
+    @GetMapping("/{pid}")
     public Result getPhraseById(@PathVariable Long pid) {
         if (pid == null) {
             return Result.error().msg("请使用短语id查询具体短语");
