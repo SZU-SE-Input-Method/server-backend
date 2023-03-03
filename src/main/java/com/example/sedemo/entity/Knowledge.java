@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -27,9 +28,11 @@ public class Knowledge implements Serializable {
     private Long kid;
 
     @TableField("title")
+    @NotBlank(message = "知识标题不可为空")
     private String title;
 
     @TableField("text")
+    @NotBlank(message = "知识内容不可为空")
     private String text;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
