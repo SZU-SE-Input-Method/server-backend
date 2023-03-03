@@ -37,9 +37,9 @@ class AdminControllerTest {
      */
 
     @ParameterizedTest
-    @DisplayName("管理员登录测试")
-    @CsvSource({"admin, admin", "admin,123456"})
-    public void authAdministratorTest(String username,String password) throws Exception {
+    @DisplayName("管理员登录成功测试")
+    @CsvSource({"admin, admin"})
+    public void authAdministratorSuccessTest(String username,String password) throws Exception {
         String url = "/admin/login";
         Admin admin = new Admin();
         admin.setUsername(username);
@@ -55,6 +55,28 @@ class AdminControllerTest {
         log.info("返回结果:{}", jsonResponse.toJSONString());
         Assertions.assertAll(
                 () -> Assertions.assertEquals(ResultCode.SUCCESS, jsonResponse.get("code"))
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("管理员登录失败测试")
+    @CsvSource({"admin,123456"})
+    public void authAdministratorErrorTest(String username,String password) throws Exception {
+        String url = "/admin/login";
+        Admin admin = new Admin();
+        admin.setUsername(username);
+        admin.setPassword(password);
+        log.info("测试参数:{}", admin);
+        String requestBody = JSONObject.toJSONString(admin);
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody.getBytes())
+        ).andReturn();
+        JSONObject jsonResponse = TddUtils.getObject(result);
+        log.info("返回结果:{}", jsonResponse.toJSONString());
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(ResultCode.ERROR, jsonResponse.get("code"))
         );
     }
 }
