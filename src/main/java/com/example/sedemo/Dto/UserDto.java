@@ -22,7 +22,7 @@ public class UserDto implements Serializable {
 
     @NotBlank(message = "用户名不可为空")
     private String name;
-
+    @NotBlank(message = "用户账号不可为空")
     private String username;
     @NotBlank(message = "密码不可为空")
     private String password;
