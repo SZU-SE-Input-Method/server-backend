@@ -40,7 +40,7 @@ public class KnowledgeController {
 
     // 知识更新
     @PutMapping
-    public Result updateKnowledge(@Validated @RequestBody Knowledge knowledge){
+    public Result updateKnowledge(@RequestBody Knowledge knowledge){
         if (knowledge.getKid() == null){
             return Result.error().msg("接口调用报错:知识id不可用");
         }

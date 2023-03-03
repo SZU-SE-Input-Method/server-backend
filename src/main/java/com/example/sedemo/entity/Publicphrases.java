@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -28,6 +29,7 @@ public class Publicphrases implements Serializable {
     private Long ppid;
 
     @TableField("content")
+    @NotBlank(message = "短语内容不可为空")
     private String content;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)

@@ -40,7 +40,7 @@ public class PublicphrasesController {
 
     //短语更新
     @PutMapping
-    public Result updatePublicPhrases(@Validated @RequestBody Publicphrases publicphrases) {
+    public Result updatePublicPhrases(@RequestBody Publicphrases publicphrases) {
         if (publicphrases.getPpid() == null) {
             return Result.error().msg("接口调用报错:公共短语id不可用");
         }
