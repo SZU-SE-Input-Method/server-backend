@@ -38,11 +38,11 @@ public class UserController {
     }
 
     @PutMapping
-    public Result updateUser(@Validated @RequestBody UserDto userDTO) {
+    public Result updateUser(@RequestBody UserDto userDTO) {
+        log.info("调用更新用户接口,接受数据:{}", userDTO);
         if (userDTO.getUid() == null) {
             return Result.error().msg("接口调用报错:用户id不可为空");
         }
-        log.info("调用更新用户接口,接受数据:{}", userDTO);
         return userService.updateUser(User.dtoToUser(userDTO));
     }
 

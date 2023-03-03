@@ -30,6 +30,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
     @Override
     public Result saveUser(User user) {
+        if(!StringUtils.hasText(user.getUsername())) {
+            return Result.error().msg("用户账号不可为空");
+        }
         //对密码进行MD5加密
         String password = user.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
