@@ -6,7 +6,7 @@ import com.example.sedemo.entity.Admin;
 import com.example.sedemo.mapper.AdminMapper;
 import com.example.sedemo.service.CookieService;
 import com.example.sedemo.service.IAdminService;
-import com.example.sedemo.utils.token.TokenUtils;
+import com.example.sedemo.utils.TokenUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 

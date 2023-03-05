@@ -1,4 +1,4 @@
-package com.example.sedemo.utils.token;
+package com.example.sedemo.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -30,9 +31,11 @@ public class Cases implements Serializable {
     @TableId(value = "cid", type = IdType.AUTO)
     private Long cid;
 
+    @NotBlank(message = "案例标题不可为空")
     @TableField("title")
     private String title;
 
+    @NotBlank(message = "案例文本不可为空")
     @TableField("text")
     private String text;
 

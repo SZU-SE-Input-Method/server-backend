@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -36,11 +37,11 @@ public class Images implements Serializable {
     @TableField("name")
     private String name;
 
+    @NotBlank(message = "图片路径不可为空")
     @TableField("path")
     private String path;
 
     @TableField("create_time")
     private LocalDateTime createTime;
-
 
 }

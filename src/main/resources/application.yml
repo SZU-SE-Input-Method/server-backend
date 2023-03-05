@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://gz-cynosdbmysql-grp-0ryxl0v3.sql.tencentcdb.com:22793/input_method_test
@@ -17,3 +21,9 @@ mybatis-plus:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+inputMethod:
+#  path: D:\WorkSpace\Note\sedemo\src\main\resources\static\photo
+  path: /src/main/resources/upload/
+
+

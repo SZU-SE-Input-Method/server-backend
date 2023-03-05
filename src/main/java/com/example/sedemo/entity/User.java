@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -33,9 +34,11 @@ public class User implements Serializable {
     @TableField("name")
     private String name;
 
+    @NotBlank(message = "用户账号不可为空")
     @TableField("username")
     private String username;
 
+    @NotBlank(message = "用户密码不可为空")
     @TableField("password")
     private String password;
 
