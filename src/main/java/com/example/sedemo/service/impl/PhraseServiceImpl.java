@@ -3,14 +3,21 @@ package com.example.sedemo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.sedemo.Dto.PhraseDto;
 import com.example.sedemo.entity.Phrase;
+import com.example.sedemo.entity.User;
 import com.example.sedemo.mapper.PhraseMapper;
 import com.example.sedemo.result.Result;
 import com.example.sedemo.service.IPhraseService;
+import com.example.sedemo.service.IUserService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -22,6 +29,9 @@ import java.time.LocalDate;
  */
 @Service
 public class PhraseServiceImpl extends ServiceImpl<PhraseMapper, Phrase> implements IPhraseService {
+    @Autowired
+    IUserService userService;
+
     @Override
     public Result getPhraseById(Long pid) {
         Phrase phrase = this.getById(pid);
@@ -41,6 +51,14 @@ public class PhraseServiceImpl extends ServiceImpl<PhraseMapper, Phrase> impleme
         queryWrapper.eq(uid != null, Phrase::getUid, uid);
         //调用mp接口
         this.page(phrasePage, queryWrapper);
-        return Result.success().data(phrasePage).msg("分页查询私人短语成功");
+        Page<PhraseDto> phraseDtoPage = new Page<>();
+        BeanUtils.copyProperties(phrasePage, phraseDtoPage, "records");
+        List<Phrase> records = phrasePage.getRecords();
+        List<PhraseDto> dtoList = records.stream().map((item) -> {
+            User user = userService.getById(item.getUid());
+            return PhraseDto.phraseToDto(item,user.getName());
+        }).collect(Collectors.toList());
+        phraseDtoPage.setRecords(dtoList);
+        return Result.success().data(phraseDtoPage).msg("分页查询私人短语成功");
     }
 }

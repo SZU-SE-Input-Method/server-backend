@@ -1,7 +1,7 @@
 package com.example.sedemo.mapper;
 
-import com.example.sedemo.entity.Phrase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.sedemo.entity.Phrase;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,5 +14,4 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PhraseMapper extends BaseMapper<Phrase> {
-
 }
