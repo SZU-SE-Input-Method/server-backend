@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: cloud-knowledge
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gz-cynosdbmysql-grp-0ryxl0v3.sql.tencentcdb.com:22793/input_method_test
+    username: szuSE
+    password: "@SZU.edu.cn"
+
+server:
+  port: 8002
+
+cloud:
+  nacos:
+    discovery:
+      server-addr: 106.52.255.208:8444
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  typeAliases: com.example.se.entity
+
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

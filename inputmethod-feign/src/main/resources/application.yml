@@ -1,0 +1,12 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-feign
+
+cloud:
+  nacos:
+    discovery:
+      server-addr: 106.52.255.208:8444
+
